@@ -3,12 +3,8 @@ services:
     name: property-compliance-backend
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn src.main:app"
+    startCommand: "gunicorn src.main:app --bind 0.0.0.0:$PORT"
     rootDir: property-compliance-backend
-    ports:
-      - 5000
-    routes:
-      - path: /api
 
   - type: web
     name: property-compliance-frontend
@@ -17,5 +13,6 @@ services:
     staticPublishPath: dist
     rootDir: property-compliance-platform
     routes:
-      - path: /
-
+      - type: rewrite
+        source: /*
+        destination: /index.html
