@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: property-compliance-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn src.main:app"
+    rootDir: property-compliance-backend
+    ports:
+      - 5000
+    routes:
+      - path: /api
+
+  - type: web
+    name: property-compliance-frontend
+    env: static
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: dist
+    rootDir: property-compliance-platform
+    routes:
+      - path: /
+
