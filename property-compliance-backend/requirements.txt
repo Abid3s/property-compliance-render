@@ -14,4 +14,4 @@ markupsafe==3.0.2
 urllib3==2.5.0
 idna==3.10
 certifi==2025.7.14
-
+gunicorn
